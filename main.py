@@ -1,4 +1,5 @@
-
+# Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+# .\tf-env\Scripts\activate
 import datetime
 import os
 import sys
@@ -9,12 +10,12 @@ import pyttsx3 #!pip install pyttsx3
 import speech_recognition as sr
 import json
 import pickle
-from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing.sequence import pad_sequences
 import random
 import numpy as np
 import psutil 
 import subprocess
+from tensorflow.keras.models import load_model # type: ignore
+from tensorflow.keras.preprocessing.sequence import pad_sequences # type: ignore
 # from elevenlabs import generate, play
 # from elevenlabs import set_api_key
 # from api_key import api_key_data
@@ -103,11 +104,11 @@ def wishMe():
     day = cal_day()
 
     if(hour>=0) and (hour<=12) and ('AM' in t):
-        speak(f"Good morning Vaibhav, it's {day} and the time is {t}")
+        speak(f"Good morning Vaibhav Boss, Talha for a reason, it's {day} and the time is {t}")
     elif(hour>=12)  and (hour<=16) and ('PM' in t):
-        speak(f"Good afternoon Vaibhav, it's {day} and the time is {t}")
+        speak(f"Good afternoon Vaibhav Boss, Talha for a reason, it's {day} and the time is {t}")
     else:
-        speak(f"Good evening Vaibhav, it's {day} and the time is {t}")
+        speak(f"Good evening Vaibhav Boss, Talha for a reason, it's {day} and the time is {t}")
 
 def social_media(command):
     if 'facebook' in command:
@@ -124,13 +125,13 @@ def social_media(command):
         webbrowser.open("https://www.instagram.com/")
     elif 'github' in command:
         speak("opening your github")
-        webbrowser.open("https://www.instagram.com/")
+        webbrowser.open("https://github.com/bellaryvaibhav/AI-Voice-Assistant")
     else:
         speak("No result found")
 
 def schedule():
     day = cal_day().lower()
-    speak("Boss today's schedule is ")
+    speak("Vaibhav Boss today's schedule is ")
     week={
     "monday": "Boss, from 9:00 to 9:50 you have Algorithms class, from 10:00 to 11:50 you have System Design class, from 12:00 to 2:00 you have a break, and today you have Programming Lab from 2:00 onwards.",
     "tuesday": "Boss, from 9:00 to 9:50 you have Web Development class, from 10:00 to 10:50 you have a break, from 11:00 to 12:50 you have Database Systems class, from 1:00 to 2:00 you have a break, and today you have Open Source Projects lab from 2:00 onwards.",
@@ -149,10 +150,10 @@ def openApp(command):
         os.startfile('C:\\Windows\\System32\\calc.exe')
     elif "notepad" in command:
         speak("opening notepad")
-        os.startfile('C:\\Windows\\System32\\notepad.exe')
+        os.startfile('C:\\Program Files\\WindowsApps\\Microsoft.WindowsNotepad_11.2501.31.0_x64__8wekyb3d8bbwe\\Notepad\\Notepad.exe')
     elif "paint" in command:
         speak("opening paint")
-        os.startfile('C:\\Windows\\System32\\mspaint.exe')
+        os.startfile('C:\\Program Files\\WindowsApps\\Microsoft.Paint_11.2503.381.0_x64__8wekyb3d8bbwe\\PaintApp\\mspaint.exe')
 
 def closeApp(command):
     if "calculator" in command:
@@ -182,11 +183,11 @@ def condition():
     speak(f"Boss our system have {percentage} percentage battery")
 
     if percentage>=80:
-        speak("Boss we could have enough charging to continue our recording")
+        speak("Boss we could have enough charging to continue our Task")
     elif percentage>=40 and percentage<=75:
         speak("Boss we should connect our system to charging point to charge our battery")
     else:
-        speak("Boss we have very low power, please connect to charging otherwise recording should be off...")
+        speak("Boss we have very low power, please connect to charging otherwise All Tasks should be off...")
 
 if __name__ == "__main__":
     wishMe()
@@ -194,7 +195,7 @@ if __name__ == "__main__":
     while True:
         query = command().lower()
         # query  = input("Enter your command-> ")
-        if ('facebook' in query) or ('discord' in query) or ('whatsapp' in query) or ('instagram' in query):
+        if ('facebook' in query) or ('discord' in query) or ('whatsapp' in query) or ('instagram' in query) or ('github' in query):
             social_media(query)
         elif ("university time table" in query) or ("schedule" in query):
             schedule()
